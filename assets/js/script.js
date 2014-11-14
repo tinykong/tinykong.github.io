@@ -11,12 +11,12 @@ if ($(window).width() <= 1280) {
 }
 
 // Variables
-    tag1       = $('.pl__all'),
-    tag2       = $('.place_your_tag_name_here'),
-    tag3       = $('.place_your_tag_name_here'),
-    tag4       = $('.place_your_tag_name_here'),
-    tag5       = $('.place_your_tag_name_here'),
-    tag6       = $('.place_your_tag_name_here');
+    tag1       = $('.全部文章'),
+    tag2       = $('.Java'),
+    tag3       = $('.Scala'),
+    tag4       = $('.悦读'),
+    tag5       = $('.Tiny'),
+    tag6       = $('.收藏');
 var sidebar    = $('#sidebar'),
     container  = $('#post'),
     content    = $('#pjax'),
@@ -141,7 +141,7 @@ function afterPjax() {
     if ( !ds_loaded && container.scrollTop() + container.height() > top ) {
       $.ajax({
         type: 'GET',
-        url: 'http://' + disqus_shortname + '.disqus.com/embed.js',
+        url: 'http://' + tinykong + '.disqus.com/embed.js',
         dataType: 'script',
         cache: true
       });
