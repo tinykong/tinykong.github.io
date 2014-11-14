@@ -6,9 +6,686 @@
     <atom:link href="place_your_blog_url_here/rss.xml" rel="self" type="application/rss+xml" />
     <description>place_your_blog_description_here</description>
     <language>place_your_blog_language_here</language>
-    <pubDate>Sat, 15 Nov 2014 00:56:29 +0800</pubDate>
-    <lastBuildDate>Sat, 15 Nov 2014 00:56:29 +0800</lastBuildDate>
+    <pubDate>Sat, 15 Nov 2014 01:34:06 +0800</pubDate>
+    <lastBuildDate>Sat, 15 Nov 2014 01:34:06 +0800</lastBuildDate>
 
+    
+    <item>
+      <title>常用工具</title>
+      <link>place_your_blog_url_here/%E6%94%B6%E8%97%8F/2014/10/11/tools.html</link>
+      <pubDate>11 Oct 2014</pubDate>
+      <author>place_your_name_here</author>
+      <guid>place_your_blog_url_here/%E6%94%B6%E8%97%8F/2014/10/11/tools</guid>
+      <description>&lt;p&gt;1.文件快捷搜索工具  everything &lt;a href=&quot;http://www.voidtools.com/&quot;&gt;http://	www.voidtools.com/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>HttpClient使用详解</title>
+      <link>place_your_blog_url_here/java/2014/10/11/java-httpclient.html</link>
+      <pubDate>11 Oct 2014</pubDate>
+      <author>place_your_name_here</author>
+      <guid>place_your_blog_url_here/java/2014/10/11/java-httpclient</guid>
+      <description>&lt;p&gt;HttpClient使用详解
+转自：&lt;a href=&quot;http://blog.csdn.net/wangpeng047/article/details/19624529&quot; title=&quot;Httpclient使用详解&quot;&gt;http://blog.csdn.net/wangpeng047/article/details/19624529&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;httpclient 下载地址：&lt;a href=&quot;http://hc.apache.org/downloads.cgi&quot;&gt;http://hc.apache.org/downloads.cgi&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Http协议的重要性相信不用我多说了，HttpClient相比传统JDK自带的URLConnection，增加了易用性和灵活性（具体区别，日后我们再讨论），它不仅是客户端发送Http请求变得容易，而且也方便了开发人员测试接口（基于Http协议的），即提高了开发的效率，也方便提高代码的健壮性。因此熟练掌握HttpClient是很重要的必修内容，掌握HttpClient后，相信对于Http协议的了解会更加深入。&lt;/p&gt;
+
+&lt;p&gt;一、简介
+HttpClient是Apache Jakarta Common下的子项目，用来提供高效的、最新的、功能丰富的支持HTTP协议的客户端编程工具包，并且它支持HTTP协议最新的版本和建议。HttpClient已经应用在很多的项目中，比如Apache Jakarta上很著名的另外两个开源项目Cactus和HTMLUnit都使用了HttpClient。
+下载地址: http://hc.apache.org/downloads.cgi&lt;/p&gt;
+
+&lt;p&gt;二、特性&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. 基于标准、纯净的java语言。实现了Http1.0和Http1.1
+2. 以可扩展的面向对象的结构实现了Http全部的方法（GET, POST, PUT, DELETE, HEAD, OPTIONS,        and TRACE）。
+3. 支持HTTPS协议。
+4. 通过Http代理建立透明的连接。
+5. 利用CONNECT方法通过Http代理建立隧道的https连接。
+6. Basic, Digest, NTLMv1, NTLMv2, NTLM2 Session, SNPNEGO/Kerberos认证方案。
+7. 插件式的自定义认证方案。
+8. 便携可靠的套接字工厂使它更容易的使用第三方解决方案。
+9. 连接管理器支持多线程应用。支持设置最大连接数，同时支持设置每个主机的最大连接数，发现并关闭过期的连接。
+10. 自动处理Set-Cookie中的Cookie。
+11. 插件式的自定义Cookie策略。
+12. Request的输出流可以避免流中内容直接缓冲到socket服务器。
+13. Response的输入流可以有效的从socket服务器直接读取相应内容。
+14. 在http1.0和http1.1中利用KeepAlive保持持久连接。
+15. 直接获取服务器发送的response code和 headers。
+16. 设置连接超时的能力。
+17. 实验性的支持http1.1 response caching。
+18. 源代码基于Apache License 可免费获取。
+19.  三、使用方法
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用HttpClient发送请求、接收响应很简单，一般需要如下几步即可。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. 创建HttpClient对象。
+2. 创建请求方法的实例，并指定请求URL。如果需要发送GET请求，创建HttpGet对象；如果需要发送POST请求，创建HttpPost对象。
+3. 如果需要发送请求参数，可调用HttpGet、HttpPost共同的setParams(HetpParams params)方法来添加请求参数；对于HttpPost对象而言，也可调用setEntity(HttpEntity entity)方法来设置请求参数。
+4. 调用HttpClient对象的execute(HttpUriRequest request)发送请求，该方法返回一个HttpResponse。
+5. 调用HttpResponse的getAllHeaders()、getHeaders(String name)等方法可获取服务器的响应头；调用HttpResponse的getEntity()方法可获取HttpEntity对象，该对象包装了服务器的响应内容。程序可通过该对象获取服务器的响应内容。
+6. 释放连接。无论执行方法是否成功，都必须释放连接
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;四、实例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	[java] view plaincopy
+	package com.test;  
+	  
+	import java.io.File;  
+	import java.io.FileInputStream;  
+	import java.io.IOException;  
+	import java.io.UnsupportedEncodingException;  
+	import java.security.KeyManagementException;  
+	import java.security.KeyStore;  
+	import java.security.KeyStoreException;  
+	import java.security.NoSuchAlgorithmException;  
+	import java.security.cert.CertificateException;  
+	import java.util.ArrayList;  
+	import java.util.List;  
+	  
+	import javax.net.ssl.SSLContext;  
+	  
+	import org.apache.http.HttpEntity;  
+	import org.apache.http.NameValuePair;  
+	import org.apache.http.ParseException;  
+	import org.apache.http.client.ClientProtocolException;  
+	import org.apache.http.client.entity.UrlEncodedFormEntity;  
+	import org.apache.http.client.methods.CloseableHttpResponse;  
+	import org.apache.http.client.methods.HttpGet;  
+	import org.apache.http.client.methods.HttpPost;  
+	import org.apache.http.conn.ssl.SSLConnectionSocketFactory;  
+	import org.apache.http.conn.ssl.SSLContexts;  
+	import org.apache.http.conn.ssl.TrustSelfSignedStrategy;  
+	import org.apache.http.entity.ContentType;  
+	import org.apache.http.entity.mime.MultipartEntityBuilder;  
+	import org.apache.http.entity.mime.content.FileBody;  
+	import org.apache.http.entity.mime.content.StringBody;  
+	import org.apache.http.impl.client.CloseableHttpClient;  
+	import org.apache.http.impl.client.HttpClients;  
+	import org.apache.http.message.BasicNameValuePair;  
+	import org.apache.http.util.EntityUtils;  
+	import org.junit.Test;  
+  
+public class HttpClientTest {  
+  
+@Test  
+public void jUnitTest() {  
+    get();  
+}  
+  
+/** 
+ * HttpClient连接SSL 
+ */  
+
+public void ssl() {  
+    CloseableHttpClient httpclient = null;  
+    try {  
+        KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());  
+        FileInputStream instream = new FileInputStream(new File(&quot;d:\\tomcat.keystore&quot;));  
+        try {  
+            // 加载keyStore d:\\tomcat.keystore    
+            trustStore.load(instream, &quot;123456&quot;.toCharArray());  
+        } catch (CertificateException e) {  
+            e.printStackTrace();  
+        } finally {  
+            try {  
+                instream.close();  
+            } catch (Exception ignore) {  
+            }  
+        }  
+        // 相信自己的CA和所有自签名的证书  
+        SSLContext sslcontext = SSLContexts.custom().loadTrustMaterial(trustStore, new TrustSelfSignedStrategy()).build();  
+        // 只允许使用TLSv1协议  
+        SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, new String[] { &quot;TLSv1&quot; }, null,  
+                SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);  
+        httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();  
+        // 创建http请求(get方式)  
+        HttpGet httpget = new HttpGet(&quot;https://localhost:8443/myDemo/Ajax/serivceJ.action&quot;);  
+        System.out.println(&quot;executing request&quot; + httpget.getRequestLine());  
+        CloseableHttpResponse response = httpclient.execute(httpget);  
+        try {  
+            HttpEntity entity = response.getEntity();  
+            System.out.println(&quot;----------------------------------------&quot;);  
+            System.out.println(response.getStatusLine());  
+            if (entity != null) {  
+                System.out.println(&quot;Response content length: &quot; + entity.getContentLength());  
+                System.out.println(EntityUtils.toString(entity));  
+                EntityUtils.consume(entity);  
+            }  
+        } finally {  
+            response.close();  
+        }  
+    } catch (ParseException e) {  
+        e.printStackTrace();  
+    } catch (IOException e) {  
+        e.printStackTrace();  
+    } catch (KeyManagementException e) {  
+        e.printStackTrace();  
+    } catch (NoSuchAlgorithmException e) {  
+        e.printStackTrace();  
+    } catch (KeyStoreException e) {  
+        e.printStackTrace();  
+    } finally {  
+        if (httpclient != null) {  
+            try {  
+                httpclient.close();  
+            } catch (IOException e) {  
+                e.printStackTrace();  
+            }  
+        }  
+    }  
+}  
+  
+/** 
+ * post方式提交表单（模拟用户登录请求） 
+ */  
+public void postForm() {  
+    // 创建默认的httpClient实例.    
+    CloseableHttpClient httpclient = HttpClients.createDefault();  
+    // 创建httppost    
+    HttpPost httppost = new HttpPost(&quot;http://localhost:8080/myDemo/Ajax/serivceJ.action&quot;);  
+    // 创建参数队列    
+    List&amp;lt;namevaluepair&amp;gt; formparams = new ArrayList&amp;lt;namevaluepair&amp;gt;();  
+    formparams.add(new BasicNameValuePair(&quot;username&quot;, &quot;admin&quot;));  
+    formparams.add(new BasicNameValuePair(&quot;password&quot;, &quot;123456&quot;));  
+    UrlEncodedFormEntity uefEntity;  
+    try {  
+        uefEntity = new UrlEncodedFormEntity(formparams, &quot;UTF-8&quot;);  
+        httppost.setEntity(uefEntity);  
+        System.out.println(&quot;executing request &quot; + httppost.getURI());  
+        CloseableHttpResponse response = httpclient.execute(httppost);  
+        try {  
+            HttpEntity entity = response.getEntity();  
+            if (entity != null) {  
+                System.out.println(&quot;--------------------------------------&quot;);  
+                System.out.println(&quot;Response content: &quot; + EntityUtils.toString(entity, &quot;UTF-8&quot;));  
+                System.out.println(&quot;--------------------------------------&quot;);  
+            }  
+        } finally {  
+            response.close();  
+        }  
+    } catch (ClientProtocolException e) {  
+        e.printStackTrace();  
+    } catch (UnsupportedEncodingException e1) {  
+        e1.printStackTrace();  
+    } catch (IOException e) {  
+        e.printStackTrace();  
+    } finally {  
+        // 关闭连接,释放资源    
+        try {  
+            httpclient.close();  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        }  
+    }  
+}  
+  
+/** 
+ * 发送 post请求访问本地应用并根据传递参数不同返回不同结果 
+ */  
+public void post() {  
+    // 创建默认的httpClient实例.    
+    CloseableHttpClient httpclient = HttpClients.createDefault();  
+    // 创建httppost    
+    HttpPost httppost = new HttpPost(&quot;http://localhost:8080/myDemo/Ajax/serivceJ.action&quot;);  
+    // 创建参数队列    
+    List&amp;lt;namevaluepair&amp;gt; formparams = new ArrayList&amp;lt;namevaluepair&amp;gt;();  
+    formparams.add(new BasicNameValuePair(&quot;type&quot;, &quot;house&quot;));  
+    UrlEncodedFormEntity uefEntity;  
+    try {  
+        uefEntity = new UrlEncodedFormEntity(formparams, &quot;UTF-8&quot;);  
+        httppost.setEntity(uefEntity);  
+        System.out.println(&quot;executing request &quot; + httppost.getURI());  
+        CloseableHttpResponse response = httpclient.execute(httppost);  
+        try {  
+            HttpEntity entity = response.getEntity();  
+            if (entity != null) {  
+                System.out.println(&quot;--------------------------------------&quot;);  
+                System.out.println(&quot;Response content: &quot; + EntityUtils.toString(entity, &quot;UTF-8&quot;));  
+                System.out.println(&quot;--------------------------------------&quot;);  
+            }  
+        } finally {  
+            response.close();  
+        }  
+    } catch (ClientProtocolException e) {  
+        e.printStackTrace();  
+    } catch (UnsupportedEncodingException e1) {  
+        e1.printStackTrace();  
+    } catch (IOException e) {  
+        e.printStackTrace();  
+    } finally {  
+        // 关闭连接,释放资源    
+        try {  
+            httpclient.close();  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        }  
+    }  
+}  
+  
+/** 
+ * 发送 get请求 
+ */  
+public void get() {  
+    CloseableHttpClient httpclient = HttpClients.createDefault();  
+    try {  
+        // 创建httpget.    
+        HttpGet httpget = new HttpGet(&quot;http://www.baidu.com/&quot;);  
+        System.out.println(&quot;executing request &quot; + httpget.getURI());  
+        // 执行get请求.    
+        CloseableHttpResponse response = httpclient.execute(httpget);  
+        try {  
+            // 获取响应实体    
+            HttpEntity entity = response.getEntity();  
+            System.out.println(&quot;--------------------------------------&quot;);  
+            // 打印响应状态    
+            System.out.println(response.getStatusLine());  
+            if (entity != null) {  
+                // 打印响应内容长度    
+                System.out.println(&quot;Response content length: &quot; + entity.getContentLength());  
+                // 打印响应内容    
+                System.out.println(&quot;Response content: &quot; + EntityUtils.toString(entity));  
+            }  
+            System.out.println(&quot;------------------------------------&quot;);  
+        } finally {  
+            response.close();  
+        }  
+    } catch (ClientProtocolException e) {  
+        e.printStackTrace();  
+    } catch (ParseException e) {  
+        e.printStackTrace();  
+    } catch (IOException e) {  
+        e.printStackTrace();  
+    } finally {  
+        // 关闭连接,释放资源    
+        try {  
+            httpclient.close();  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        }  
+    }  
+}  
+  
+/** 
+ * 上传文件 
+ */  
+public void upload() {  
+    CloseableHttpClient httpclient = HttpClients.createDefault();  
+    try {  
+        HttpPost httppost = new HttpPost(&quot;http://localhost:8080/myDemo/Ajax/serivceFile.action&quot;);  
+  
+        FileBody bin = new FileBody(new File(&quot;F:\\image\\sendpix0.jpg&quot;));  
+        StringBody comment = new StringBody(&quot;A binary file of some kind&quot;, ContentType.TEXT_PLAIN);  
+  
+        HttpEntity reqEntity = MultipartEntityBuilder.create().addPart(&quot;bin&quot;, bin).addPart(&quot;comment&quot;, comment).build();  
+  
+        httppost.setEntity(reqEntity);  
+  
+        System.out.println(&quot;executing request &quot; + httppost.getRequestLine());  
+        CloseableHttpResponse response = httpclient.execute(httppost);  
+        try {  
+            System.out.println(&quot;----------------------------------------&quot;);  
+            System.out.println(response.getStatusLine());  
+            HttpEntity resEntity = response.getEntity();  
+            if (resEntity != null) {  
+                System.out.println(&quot;Response content length: &quot; + resEntity.getContentLength());  
+            }  
+            EntityUtils.consume(resEntity);  
+        } finally {  
+            response.close();  
+        }  
+    } catch (ClientProtocolException e) {  
+        e.printStackTrace();  
+    } catch (IOException e) {  
+        e.printStackTrace();  
+    } finally {  
+        try {  
+            httpclient.close();  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        }  
+    }  
+}  
+} 
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JAVA中enum的使用</title>
+      <link>place_your_blog_url_here/java/2014/10/02/java-enum.html</link>
+      <pubDate>02 Oct 2014</pubDate>
+      <author>place_your_name_here</author>
+      <guid>place_your_blog_url_here/java/2014/10/02/java-enum</guid>
+      <description>&lt;p&gt;&lt;strong&gt;JAVA中enum的使用&lt;/strong&gt;
+enum的使用方法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public enum Color {
+RED(&quot;RED&quot;),BULE(&quot;BULE&quot;),GREEN(&quot;GREEN&quot;);
+
+String name;
+
+public String getName(){
+    return this.name;
+}
+
+private Color(String name){
+	this.name = name;
+	System.out.println(&quot;hello:&quot;+name);
+}
+
+public static void main(String[] args) {
+	for(Test eTest : Color.values()){
+		System.out.println(eTest.toString());
+		System.out.println(eTest.name);
+		System.out.println(eTest.getName());
+	}
+}
+} Color实际上是一个final类，RED,BULE,GREEN都是这个final类的静态常量。因此可以通过Color.RED的方式访问。 注意：这些枚举值都是public static final的，也就是我们经常所定义的常量方式，因此枚举类中的枚举值最好全部大写。 
+
+1.枚举类的构造器只在构造枚举值的时候调用。即定义RED(&quot;RED&quot;),BULE(&quot;BULE&quot;),GREEN(&quot;GREEN&quot;)的时候被调用;
+
+2.构造器只能是private的，不能定义为public。
+
+3、所有枚举类都继承了Enum的方法，下面我们详细介绍这些方法。
+ 
+   (1)  ordinal()方法: 返回枚举值在枚举类种的顺序。这个顺序根据枚举值声明的顺序而定。
+ Color.RED.ordinal();  //返回结果：0
+ Color.BLUE.ordinal();  //返回结果：1
+   (2)  compareTo()方法: Enum实现了java.lang.Comparable接口，因此可以比较象与指定对象的顺序。Enum中的compareTo返回的是两个枚举值的顺序之差。当然，前提是两个枚举值必须属于同一个枚举类，否则会抛出ClassCastException()异常。(具体可见源代码)
+ Color.RED.compareTo(Color.BLUE);  //返回结果 -1
+   (3)  values()方法： 静态方法，返回一个包含全部枚举值的数组。
+ Color[] colors=Color.values();
+ for(Color c:colors){
+System.out.print(c+&quot;,&quot;); 
+ }//返回结果：RED,BLUE,BLACK YELLOW,GREEN,
+   (4)  toString()方法： 返回枚举常量的名称。
+ Color c=Color.RED;
+ System.out.println(c);//返回结果: RED
+   (5)  valueOf()方法： 这个方法和toString方法是相对应的，返回带指定名称的指定枚举类型的枚举常量。
+ Color.valueOf(&quot;BLUE&quot;);   //返回结果: Color.BLUE
+   (6)  equals()方法： 比较两个枚举类对象的引用。
+
+4.name和toString方法：
+
+public final String name()
+	Returns the name of this enum constant, exactly as declared in its enum declaration. Most programmers should use the toString() method in preference to this one, as the toString method may return a more user-friendly name. This method is designed primarily for use in specialized situations where correctness depends on getting the exact name, which will not vary from release to release.
+Returns:
+	the name of this enum constant
+
+public String toString()
+	Returns the name of this enum constant, as contained in the declaration. This method may be overridden, though it typically isn&#39;t necessary or desirable. An enum type should override this method when a more &quot;programmer-friendly&quot; string form exists.
+Overrides:
+	toString in class Object
+Returns:
+	the name of this enum constant
+
+两个方法都是返回枚举常量的名称。
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Java迭代器（转）(iterator详解以及和for循环的区别)</title>
+      <link>place_your_blog_url_here/java/2014/09/24/java-iterator-and-for.html</link>
+      <pubDate>24 Sep 2014</pubDate>
+      <author>place_your_name_here</author>
+      <guid>place_your_blog_url_here/java/2014/09/24/java-iterator-and-for</guid>
+      <description>&lt;p&gt;迭代器是一种模式，它可以使得对于序列类型的数据结构的遍历行为与被遍历的对象分离，即我们无需关心该序列的底层结构是什么样子的。只要拿到这个对象,使用迭代器就可以遍历这个对象的内部.&lt;/p&gt;
+
+&lt;p&gt;1.Iterator&lt;/p&gt;
+
+&lt;p&gt;Java提供一个专门的迭代器«interface»Iterator，我们可以对某个序列实现该interface，来提供标准的Java迭代器。Iterator接口实现后的功能是“使用”一个迭代器.&lt;/p&gt;
+
+&lt;p&gt;文档定义:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Package java.util;  
+publicinterface Iterator&amp;lt;E&amp;gt; { 
+boolean hasNext();//判断是否存在下一个对象元素
+E next(); 
+void remove();
+} 
+
+&amp;lt;span style=&quot;font-size: 18px;&quot;&amp;gt;Package  java.util;   
+  
+public interface Iterator&amp;lt;E&amp;gt; {  
+    boolean hasNext();//判断是否存在下一个对象元素  
+     E next();  
+    void remove();  
+}  
+&amp;lt;/span&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2.Iterable&lt;/p&gt;
+
+&lt;p&gt;Java中还提供了一个Iterable接口，Iterable接口实现后的功能是“返回”一个迭代器,我们常用的实现了该接口的子接口有: Collection&lt;e&gt;, Deque&lt;e&gt;, List&lt;e&gt;, Queue&lt;e&gt;, Set&lt;e&gt; 等.该接口的iterator()方法返回一个标准的Iterator实现。实现这个接口允许对象成为 Foreach 语句的目标。就可以通过Foreach语法遍历你的底层序列。&lt;/e&gt;&lt;/e&gt;&lt;/e&gt;&lt;/e&gt;&lt;/e&gt;&lt;/p&gt;
+
+&lt;p&gt;Iterable接口包含一个能够产生Iterator的iterator()方法，并且Iterable接口被foreach用来在序列中移动。因此如果创建了任何实现Iterable接口的类，都可以将它用于foreach语句中。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;文档定义: 
+
+Package java.lang; 
+
+import java.util.Iterator;
+public  interface Iterable&amp;lt;T&amp;gt; { 
+Iterator&amp;lt;T&amp;gt; iterator();  
+} 
+
+&amp;lt;span style=&quot;font-size: 18px;&quot;&amp;gt;文档定义:  
+  
+Package  java.lang;   
+  
+import  java.util.Iterator;   
+public interface Iterable&amp;lt;T&amp;gt; {   
+     Iterator&amp;lt;T&amp;gt; iterator();   
+}  
+  
+&amp;lt;/span&amp;gt;  
+
+使用Iterator的简单例子 
+
+
+import java.util.*;
+
+publicclass TestIterator { 
+
+public  static void main(String[] args) {
+
+List list=new ArrayList();
+
+Map map=new HashMap();
+
+for(int i=0;i&amp;lt;10;i++){
+
+list.add(new String(&quot;list&quot;+i) );
+
+map.put(i, new String(&quot;map&quot;+i));
+
+} 
+
+Iterator iterList= list.iterator();//List接口实现了Iterable接口
+
+while(iterList.hasNext()){
+
+String strList=(String)iterList.next();  
+
+System.out.println(strList.toString());  
+
+} 
+
+Iterator iterMap=map.entrySet().iterator();
+
+while(iterMap.hasNext()){
+
+Map.Entry strMap=(Map.Entry)iterMap.next();
+
+System.out.println(strMap.getValue());  
+
+} 
+
+} 
+
+} 
+
+&amp;lt;span style=&quot;color: rgb(0, 0, 153); font-size: 18px;&quot;&amp;gt; &amp;lt;/span&amp;gt;&amp;lt;span style=&quot;color: rgb(0, 0, 153); font-size: 18px;&quot;&amp;gt;&amp;lt;/span&amp;gt;
+
+&amp;lt;span style=&quot;font-size: 18px;&quot;&amp;gt;使用Iterator的简单例子  
+  
+import java.util.*;  
+  
+public class TestIterator {  
+  
+   public static void main(String[] args) {  
+  
+      List list=new ArrayList();  
+  
+      Map map=new HashMap();  
+  
+      for(int i=0;i&amp;lt;10;i++){  
+  
+          list.add(new String(&quot;list&quot;+i) );  
+  
+          map.put(i, new String(&quot;map&quot;+i));  
+  
+      }  
+  
+      Iterator iterList= list.iterator();//List接口实现了Iterable接口  
+  
+        while(iterList.hasNext()){  
+  
+          String strList=(String)iterList.next();  
+  
+          System.out.println(strList.toString());  
+  
+      }  
+  
+      Iterator iterMap=map.entrySet().iterator();  
+  
+      while(iterMap.hasNext()){  
+  
+          Map.Entry  strMap=(Map.Entry)iterMap.next();  
+  
+          System.out.println(strMap.getValue());  
+      }  
+  
+   }  
+  
+}  
+  
+ &amp;lt;span&amp;gt;  &amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;/span&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接口Iterator在不同的子接口中会根据情况进行功能的扩展,例如针对List的迭代器ListIterator,该迭代器只能用于各种List类的访问。ListIterator可以双向移动。添加了previous()等方法.&lt;/p&gt;
+
+&lt;p&gt;3 Iterator与泛型搭配&lt;/p&gt;
+
+&lt;p&gt;Iterator对集合类中的任何一个实现类，都可以返回这样一个Iterator对象。可以适用于任何一个类。&lt;/p&gt;
+
+&lt;p&gt;因为集合类(List和Set等)可以装入的对象的类型是不确定的,从集合中取出时都是Object类型,用时都需要进行强制转化,这样会很麻烦,用上泛型,就是提前告诉集合确定要装入集合的类型,这样就可以直接使用而不用显示类型转换.非常方便.&lt;/p&gt;
+
+&lt;p&gt;4.foreach和Iterator的关系&lt;/p&gt;
+
+&lt;p&gt;for each是jdk5.0新增加的一个循环结构，可以用来处理集合中的每个元素而不用考虑集合定下标。&lt;/p&gt;
+
+&lt;p&gt;格式如下 &lt;/p&gt;
+
+&lt;p&gt;for(variable:collection){ statement; }&lt;/p&gt;
+
+&lt;p&gt;定义一个变量用于暂存集合中的每一个元素，并执行相应的语句(块)。collection必须是一个数组或者是一个实现了lterable接口的类对象。 &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;上面的例子使用泛型和forEach的写法:  
+
+import java.util.*;
+public  class TestIterator { 
+
+public  static void main(String[] args) {
+
+List&amp;lt;String&amp;gt; list=new ArrayList&amp;lt;String&amp;gt; ();
+
+for(int i=0;i&amp;lt;10;i++){
+  list.add(new String(&quot;list&quot;+i) );
+} 
+
+for(String str:list){
+  System.out.println(str); 
+} 
+
+} 
+
+&amp;lt;span style=&quot;font-size: 18px;&quot;&amp;gt;上面的例子使用泛型和forEach的写法:  
+  
+import java.util.*;  
+public class TestIterator {  
+   public static void main(String[] args) {  
+      List&amp;lt;String&amp;gt;  list=new ArrayList&amp;lt;String&amp;gt; ();  
+  
+      for(int i=0;i&amp;lt;10;i++){  
+  
+          list.add(new String(&quot;list&quot;+i) );  
+  
+      }  
+  
+      for(String str:list){  
+  
+        System.out.println(str);  
+  
+      }    
+  
+}  
+  
+&amp;lt;/span&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用for循环时，在循环内使用list.remove()会导致错误，可以使用如下方法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for(int i = 0; i &amp;lt; list.size();i++){
+  if(true){
+	list.remove(list.get(i));
+	--i;//remove的同时下标跟着减
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看出,使用for each循环语句的优势在于更加简洁，更不容易出错，不必关心下标的起始值和终止值。&lt;/p&gt;
+
+&lt;p&gt;forEach不是关键字,关键字还是for,语句是由iterator实现的，他们最大的不同之处就在于remove()方法上。&lt;/p&gt;
+
+&lt;p&gt;一般调用删除和添加方法都是具体集合的方法，例如：&lt;/p&gt;
+
+&lt;p&gt;List list = new ArrayList(); list.add(…); list.remove(…);&lt;/p&gt;
+
+&lt;p&gt;但是，如果在循环的过程中调用集合的remove()方法，就会导致循环出错，因为循环过程中list.size()的大小变化了，就导致了错误。 所以，如果想在循环语句中删除集合中的某个元素，就要用迭代器iterator的remove()方法，因为它的remove()方法不仅会删除元素，还会维护一个标志，用来记录目前是不是可删除状态，例如，你不能连续两次调用它的remove()方法，调用之前至少有一次next()方法的调用。&lt;/p&gt;
+
+&lt;p&gt;forEach就是为了让用iterator循环访问的形式简单，写起来更方便。当然功能不太全,所以但如有删除操作，还是要用它原来的形式。&lt;/p&gt;
+
+&lt;p&gt;4 使用for循环与使用迭代器iterator的对比 &lt;/p&gt;
+
+&lt;p&gt;效率上的各有有事&lt;/p&gt;
+
+&lt;p&gt;采用ArrayList对随机访问比较快，而for循环中的get()方法，采用的即是随机访问的方法，因此在ArrayList里，for循环较快&lt;/p&gt;
+
+&lt;p&gt;采用LinkedList则是顺序访问比较快，iterator中的next()方法，采用的即是顺序访问的方法，因此在LinkedList里，使用iterator较快&lt;/p&gt;
+
+&lt;p&gt;从数据结构角度分析,for循环适合访问顺序结构,可以根据下标快速获取指定元素.而Iterator 适合访问链式结构,因为迭代器是通过next()和Pre()来定位的.可以访问没有顺序的集合.&lt;/p&gt;
+
+&lt;p&gt;而使用 Iterator 的好处在于可以使用相同方式去遍历集合中元素，而不用考虑集合类的内部实现（只要它实现了 java.lang.Iterable 接口），如果使用 Iterator 来遍历集合中元素，一旦不再使用 List 转而使用 Set 来组织数据，那遍历元素的代码不用做任何修改，如果使用 for 来遍历，那所有遍历此集合的算法都得做相应调整,因为List有序,Set无序,结构不同,他们的访问算法也不一样.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>brickroad</title>
+      <link>place_your_blog_url_here/java/2014/04/19/the-first-blog.html</link>
+      <pubDate>19 Apr 2014</pubDate>
+      <author>place_your_name_here</author>
+      <guid>place_your_blog_url_here/java/2014/04/19/the-first-blog</guid>
+      <description>&lt;p&gt;我在搬砖的路上
+没有尽头&lt;/p&gt;
+</description>
+    </item>
     
   </channel>
 </rss>

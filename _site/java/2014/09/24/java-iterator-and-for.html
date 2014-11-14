@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+    <title>Java迭代器（转）(iterator详解以及和for循环的区别)</title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+  </head>
+  <body>
+    <aside id="sidebar">
+      <nav id="tags">
+        <a href="/index.html" id="avatar"></a>
+
+        <ul id="tags__ul">
+          <li id="js-label1" class="tags__li tags-btn active">全部文章</li>
+          <li id="js-label2" class="tags__li tags-btn">Java</li>
+          <li id="js-label3" class="tags__li tags-btn">Scala</li>
+          <li id="js-label4" class="tags__li tags-btn">悦读</li>
+          <li id="js-label5" class="tags__li tags-btn">Tiny</li>
+          <li id="js-label6" class="tags__li tags-btn">收藏</li>
+        </ul>
+
+        <div id="tags__bottom">
+          <a href="mailto:place_your_email_address_here" id="icon-email" class="tags-btn fontello"></a>
+          <a href="/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+        </div>
+      </nav> <!-- end #tags -->
+
+      <div id="posts-list">
+        <form action="" id="search-form">
+          <a href="/index.html" id="mobile-avatar"></a>
+          <!-- NOTE: input field is disabled by default -->
+          <input id="search-input" type="text" placeholder="Search..." disabled >
+        </form>
+
+        <nav id="pl__container">
+        
+          <a class="收藏 pl__all" href="/%E6%94%B6%E8%97%8F/2014/10/11/tools.html"><span class="pl__circle"></span><span class="pl__title">常用工具</span><span class="pl__date">Oct 2014</span></a>
+        
+          <a class="java pl__all" href="/java/2014/10/11/java-httpclient.html"><span class="pl__circle"></span><span class="pl__title">HttpClient使用详解</span><span class="pl__date">Oct 2014</span></a>
+        
+          <a class="java pl__all" href="/java/2014/10/02/java-enum.html"><span class="pl__circle"></span><span class="pl__title">JAVA中enum的使用</span><span class="pl__date">Oct 2014</span></a>
+        
+          <a class="java pl__all" href="/java/2014/09/24/java-iterator-and-for.html"><span class="pl__circle"></span><span class="pl__title">Java迭代器（转）(iterator详解以及和for循环的区别)</span><span class="pl__date">Sep 2014</span></a>
+        
+          <a class="java pl__all" href="/java/2014/04/19/the-first-blog.html"><span class="pl__circle"></span><span class="pl__title">brickroad</span><span class="pl__date">Apr 2014</span></a>
+        
+        </nav>
+      </div> <!-- end #posts-list -->
+    </aside> <!-- end #sidebar -->
+
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+  <h1 id="post__title" data-identifier="20140924">Java迭代器（转）(iterator详解以及和for循环的区别)</h1>
+  <p>迭代器是一种模式，它可以使得对于序列类型的数据结构的遍历行为与被遍历的对象分离，即我们无需关心该序列的底层结构是什么样子的。只要拿到这个对象,使用迭代器就可以遍历这个对象的内部.</p>
+
+<p>1.Iterator</p>
+
+<p>Java提供一个专门的迭代器«interface»Iterator，我们可以对某个序列实现该interface，来提供标准的Java迭代器。Iterator接口实现后的功能是“使用”一个迭代器.</p>
+
+<p>文档定义:</p>
+
+<pre><code>Package java.util;  
+publicinterface Iterator&lt;E&gt; { 
+boolean hasNext();//判断是否存在下一个对象元素
+E next(); 
+void remove();
+} 
+
+&lt;span style="font-size: 18px;"&gt;Package  java.util;   
+  
+public interface Iterator&lt;E&gt; {  
+    boolean hasNext();//判断是否存在下一个对象元素  
+     E next();  
+    void remove();  
+}  
+&lt;/span&gt;  
+</code></pre>
+
+<p>2.Iterable</p>
+
+<p>Java中还提供了一个Iterable接口，Iterable接口实现后的功能是“返回”一个迭代器,我们常用的实现了该接口的子接口有: Collection<e>, Deque<e>, List<e>, Queue<e>, Set<e> 等.该接口的iterator()方法返回一个标准的Iterator实现。实现这个接口允许对象成为 Foreach 语句的目标。就可以通过Foreach语法遍历你的底层序列。</e></e></e></e></e></p>
+
+<p>Iterable接口包含一个能够产生Iterator的iterator()方法，并且Iterable接口被foreach用来在序列中移动。因此如果创建了任何实现Iterable接口的类，都可以将它用于foreach语句中。</p>
+
+<pre><code>文档定义: 
+
+Package java.lang; 
+
+import java.util.Iterator;
+public  interface Iterable&lt;T&gt; { 
+Iterator&lt;T&gt; iterator();  
+} 
+
+&lt;span style="font-size: 18px;"&gt;文档定义:  
+  
+Package  java.lang;   
+  
+import  java.util.Iterator;   
+public interface Iterable&lt;T&gt; {   
+     Iterator&lt;T&gt; iterator();   
+}  
+  
+&lt;/span&gt;  
+
+使用Iterator的简单例子 
+
+
+import java.util.*;
+
+publicclass TestIterator { 
+
+public  static void main(String[] args) {
+
+List list=new ArrayList();
+
+Map map=new HashMap();
+
+for(int i=0;i&lt;10;i++){
+
+list.add(new String("list"+i) );
+
+map.put(i, new String("map"+i));
+
+} 
+
+Iterator iterList= list.iterator();//List接口实现了Iterable接口
+
+while(iterList.hasNext()){
+
+String strList=(String)iterList.next();  
+
+System.out.println(strList.toString());  
+
+} 
+
+Iterator iterMap=map.entrySet().iterator();
+
+while(iterMap.hasNext()){
+
+Map.Entry strMap=(Map.Entry)iterMap.next();
+
+System.out.println(strMap.getValue());  
+
+} 
+
+} 
+
+} 
+
+&lt;span style="color: rgb(0, 0, 153); font-size: 18px;"&gt; &lt;/span&gt;&lt;span style="color: rgb(0, 0, 153); font-size: 18px;"&gt;&lt;/span&gt;
+
+&lt;span style="font-size: 18px;"&gt;使用Iterator的简单例子  
+  
+import java.util.*;  
+  
+public class TestIterator {  
+  
+   public static void main(String[] args) {  
+  
+      List list=new ArrayList();  
+  
+      Map map=new HashMap();  
+  
+      for(int i=0;i&lt;10;i++){  
+  
+          list.add(new String("list"+i) );  
+  
+          map.put(i, new String("map"+i));  
+  
+      }  
+  
+      Iterator iterList= list.iterator();//List接口实现了Iterable接口  
+  
+        while(iterList.hasNext()){  
+  
+          String strList=(String)iterList.next();  
+  
+          System.out.println(strList.toString());  
+  
+      }  
+  
+      Iterator iterMap=map.entrySet().iterator();  
+  
+      while(iterMap.hasNext()){  
+  
+          Map.Entry  strMap=(Map.Entry)iterMap.next();  
+  
+          System.out.println(strMap.getValue());  
+      }  
+  
+   }  
+  
+}  
+  
+ &lt;span&gt;  &lt;/span&gt;&lt;span&gt;&lt;/span&gt; &lt;/span&gt;  
+</code></pre>
+
+<p>接口Iterator在不同的子接口中会根据情况进行功能的扩展,例如针对List的迭代器ListIterator,该迭代器只能用于各种List类的访问。ListIterator可以双向移动。添加了previous()等方法.</p>
+
+<p>3 Iterator与泛型搭配</p>
+
+<p>Iterator对集合类中的任何一个实现类，都可以返回这样一个Iterator对象。可以适用于任何一个类。</p>
+
+<p>因为集合类(List和Set等)可以装入的对象的类型是不确定的,从集合中取出时都是Object类型,用时都需要进行强制转化,这样会很麻烦,用上泛型,就是提前告诉集合确定要装入集合的类型,这样就可以直接使用而不用显示类型转换.非常方便.</p>
+
+<p>4.foreach和Iterator的关系</p>
+
+<p>for each是jdk5.0新增加的一个循环结构，可以用来处理集合中的每个元素而不用考虑集合定下标。</p>
+
+<p>格式如下 </p>
+
+<p>for(variable:collection){ statement; }</p>
+
+<p>定义一个变量用于暂存集合中的每一个元素，并执行相应的语句(块)。collection必须是一个数组或者是一个实现了lterable接口的类对象。 </p>
+
+<pre><code>上面的例子使用泛型和forEach的写法:  
+
+import java.util.*;
+public  class TestIterator { 
+
+public  static void main(String[] args) {
+
+List&lt;String&gt; list=new ArrayList&lt;String&gt; ();
+
+for(int i=0;i&lt;10;i++){
+  list.add(new String("list"+i) );
+} 
+
+for(String str:list){
+  System.out.println(str); 
+} 
+
+} 
+
+&lt;span style="font-size: 18px;"&gt;上面的例子使用泛型和forEach的写法:  
+  
+import java.util.*;  
+public class TestIterator {  
+   public static void main(String[] args) {  
+      List&lt;String&gt;  list=new ArrayList&lt;String&gt; ();  
+  
+      for(int i=0;i&lt;10;i++){  
+  
+          list.add(new String("list"+i) );  
+  
+      }  
+  
+      for(String str:list){  
+  
+        System.out.println(str);  
+  
+      }    
+  
+}  
+  
+&lt;/span&gt;  
+</code></pre>
+
+<p>使用for循环时，在循环内使用list.remove()会导致错误，可以使用如下方法：</p>
+
+<pre><code>for(int i = 0; i &lt; list.size();i++){
+  if(true){
+	list.remove(list.get(i));
+	--i;//remove的同时下标跟着减
+	}
+}
+</code></pre>
+
+<p>可以看出,使用for each循环语句的优势在于更加简洁，更不容易出错，不必关心下标的起始值和终止值。</p>
+
+<p>forEach不是关键字,关键字还是for,语句是由iterator实现的，他们最大的不同之处就在于remove()方法上。</p>
+
+<p>一般调用删除和添加方法都是具体集合的方法，例如：</p>
+
+<p>List list = new ArrayList(); list.add(…); list.remove(…);</p>
+
+<p>但是，如果在循环的过程中调用集合的remove()方法，就会导致循环出错，因为循环过程中list.size()的大小变化了，就导致了错误。 所以，如果想在循环语句中删除集合中的某个元素，就要用迭代器iterator的remove()方法，因为它的remove()方法不仅会删除元素，还会维护一个标志，用来记录目前是不是可删除状态，例如，你不能连续两次调用它的remove()方法，调用之前至少有一次next()方法的调用。</p>
+
+<p>forEach就是为了让用iterator循环访问的形式简单，写起来更方便。当然功能不太全,所以但如有删除操作，还是要用它原来的形式。</p>
+
+<p>4 使用for循环与使用迭代器iterator的对比 </p>
+
+<p>效率上的各有有事</p>
+
+<p>采用ArrayList对随机访问比较快，而for循环中的get()方法，采用的即是随机访问的方法，因此在ArrayList里，for循环较快</p>
+
+<p>采用LinkedList则是顺序访问比较快，iterator中的next()方法，采用的即是顺序访问的方法，因此在LinkedList里，使用iterator较快</p>
+
+<p>从数据结构角度分析,for循环适合访问顺序结构,可以根据下标快速获取指定元素.而Iterator 适合访问链式结构,因为迭代器是通过next()和Pre()来定位的.可以访问没有顺序的集合.</p>
+
+<p>而使用 Iterator 的好处在于可以使用相同方式去遍历集合中元素，而不用考虑集合类的内部实现（只要它实现了 java.lang.Iterable 接口），如果使用 Iterator 来遍历集合中元素，一旦不再使用 List 转而使用 Set 来组织数据，那遍历元素的代码不用做任何修改，如果使用 for 来遍历，那所有遍历此集合的算法都得做相应调整,因为List有序,Set无序,结构不同,他们的访问算法也不一样.</p>
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://septiny.com/java/2014/09/24/java-iterator-and-for.html&text=Java迭代器（转）(iterator详解以及和for循环的区别)" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://septiny.com/java/2014/09/24/java-iterator-and-for.html&title=Java迭代器（转）(iterator详解以及和for循环的区别)" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+<div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink" target="_blank">Loading Disqus comments...</a>
+</div> <!-- end #disqus_thread -->
+
+<p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+    <script src="/assets/js/jquery-2.0.3.min.js"></script>
+    <script src="/assets/js/jquery.pjax.js"></script>
+    <script src="/assets/js/nprogress.js"></script>
+    <script src="/assets/js/script.js"></script>
+  </body>
+</html>
