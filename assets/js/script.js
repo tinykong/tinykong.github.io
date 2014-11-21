@@ -11,12 +11,12 @@ if ($(window).width() <= 1280) {
 }
 
 // Variables
-    tag1       = $('.全部文章'),
+    tag1       = $('.pl__all'),
     tag2       = $('.Java'),
     tag3       = $('.Scala'),
-    tag4       = $('.悦读'),
+    tag4       = $('.book'),
     tag5       = $('.Tiny'),
-    tag6       = $('.收藏');
+    tag6       = $('.tools');
 var sidebar    = $('#sidebar'),
     container  = $('#post'),
     content    = $('#pjax'),
