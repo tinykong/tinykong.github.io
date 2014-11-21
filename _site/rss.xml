@@ -6,8 +6,8 @@
     <atom:link href="place_your_blog_url_here/rss.xml" rel="self" type="application/rss+xml" />
     <description>place_your_blog_description_here</description>
     <language>place_your_blog_language_here</language>
-    <pubDate>Fri, 21 Nov 2014 23:01:13 +0800</pubDate>
-    <lastBuildDate>Fri, 21 Nov 2014 23:01:13 +0800</lastBuildDate>
+    <pubDate>Fri, 21 Nov 2014 23:04:36 +0800</pubDate>
+    <lastBuildDate>Fri, 21 Nov 2014 23:04:36 +0800</lastBuildDate>
 
     
     <item>
@@ -678,10 +678,10 @@ public class TestIterator {
     
     <item>
       <title>brickroad</title>
-      <link>place_your_blog_url_here/java/2014/04/19/the-first-blog.html</link>
+      <link>place_your_blog_url_here/tiny/2014/04/19/the-first-blog.html</link>
       <pubDate>19 Apr 2014</pubDate>
       <author>place_your_name_here</author>
-      <guid>place_your_blog_url_here/java/2014/04/19/the-first-blog</guid>
+      <guid>place_your_blog_url_here/tiny/2014/04/19/the-first-blog</guid>
       <description>&lt;p&gt;我在搬砖的路上
 没有尽头&lt;/p&gt;
 </description>
