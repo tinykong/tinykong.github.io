@@ -12,10 +12,10 @@ if ($(window).width() <= 1280) {
 
 // Variables
     tag1       = $('.pl__all'),
-    tag2       = $('.Java'),
-    tag3       = $('.Scala'),
+    tag2       = $('.java'),
+    tag3       = $('.scala'),
     tag4       = $('.book'),
-    tag5       = $('.Tiny'),
+    tag5       = $('.tiny'),
     tag6       = $('.tools');
 var sidebar    = $('#sidebar'),
     container  = $('#post'),

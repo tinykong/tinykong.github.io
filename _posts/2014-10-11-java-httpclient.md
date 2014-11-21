@@ -1,8 +1,8 @@
 ---
 layout: post
 title: HttpClient使用详解  
-category: Java
-tags: [Java]    
+category: java
+tags: [java]    
 keywords: httpclient
 description: 
 --- 

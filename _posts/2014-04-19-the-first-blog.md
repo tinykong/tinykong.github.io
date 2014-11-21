@@ -1,8 +1,8 @@
 ---
 layout: post
 title: brickroad
-category: Java
-tags: [Java]
+category: java
+tags: [java]
 keywords: brickroad
 description: 
 ---

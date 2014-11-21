@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  Java迭代器（转）(iterator详解以及和for循环的区别)
-category: Java
-tags: [Java]    
+category: java
+tags: [java]    
 keywords: iterator
 description: 
 ---
